@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>document</title>
+    <link rel="stylesheet" href="otp.css">
+    <link rel="stylesheet" href="buttons.css">
+    <link rel="stylesheet" href="typography.css">
+    <link rel="stylesheet" href="admin.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <br><br>
+    <button onclick="document.getElementById('prompt').style.display='block'" class="btn-normal" style="width: 100px; border: 0; padding: 10px;">ADD DATA</button>
+    <div class="admin-panel-container animate" id="prompt">
+        
+        <div class="sub-heading">
+            
+            <span><h1>Add image</h1><span onclick="document.getElementById('prompt').style.display='none'" class="close-btn" title="Close Modal">&times;</span></span>
+        </div>
+        <div class="admin-image" class="cross-img">
+                <img src="cross-39253_1280.png" alt="add image here" class="cross-img">
+        </div>
+        <div class="container creator-id">
+            <div class="container">
+                <div class="otp-box">
+                  <p class="heading">Enter Creator Id:</p>
+                  <input type="text" class="text-box" maxlength="4">
+                  <p class="heading" id="number">Enter Name:</p>
+                  <input type="text" class="text-box" id="name">
+                  <p class="heading" id="desc">Enter Description :</p>
+                  <input type="text" class="text-box" id="desc">
+                  
+                </div>
+      
+                <button class="btn-normal submit btn-lg" type="submit">Submit</button>
+              </div>
+        </div>
+        <div class="upload-box-container">
+            
+            <div class="upload-box">
+                <span><input type="file" name="upload-img" onchange="preview_image(event)" id="upload-img" class="btn" title="No File" style="cursor: pointer;">
+                <img id="output_image"/></span><br><br>
+                <button class="btn-normal upload-btn" type="submit">upload</button>
+                <button class="btn-normal close" type="submit">Close</button>
+            </div>
+        </div>
+    </div>
+    <script>
+         var modal = document.getElementById('id01');
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+}
+    </script>
+    <script>
+        $('.cross-img').click(function(){
+        $('.upload-box-container').css('display','block')
+      });
+        $('.close').click(function(){
+        $('.upload-box-container').css('display','none')
+      });
+        $('.upload-btn').click(function(){
+            var filename=$('#upload-img').val();
+            if(filename==false){
+                alert('No File to upload');
+            }
+            else{
+                $('.upload-box-container').css('display','none')
+            }
+      })
+      function preview_image(event) 
+        {
+        var reader = new FileReader();
+        reader.onload = function()
+        {
+        var output = document.getElementById('output_image');
+        output.src = reader.result;
+        }
+        reader.readAsDataURL(event.target.files[0]);
+        };
+    </script>
+</body>
+</html>
